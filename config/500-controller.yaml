@@ -1,0 +1,100 @@
+# Copyright 2021 TriggerMesh Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triggermesh-controller
+  namespace: triggermesh
+  labels:
+    app.kubernetes.io/part-of: triggermesh
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: triggermesh-controller
+
+  template:
+    metadata:
+      labels:
+        app: triggermesh-controller
+
+    spec:
+      serviceAccountName: triggermesh-controller
+
+      containers:
+      - name: controller
+        terminationMessagePolicy: FallbackToLogsOnError
+        image: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/triggermesh-controller
+
+        resources:
+          requests:
+            cpu: 50m
+            memory: 20Mi
+
+        env:
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        # Logging/observability configuration
+        - name: CONFIG_LOGGING_NAME
+          value: config-logging
+        - name: CONFIG_OBSERVABILITY_NAME
+          value: config-observability
+        - name: METRICS_DOMAIN
+          value: triggermesh.io
+        # Source adapters
+        - name: AWSCLOUDWATCHSOURCE_IMAGE
+          value: gcr.io/triggermesh/awscloudwatchsource-adapter:v1.11.0
+        - name: AWSCLOUDWATCHLOGSSOURCE_IMAGE
+          value: gcr.io/triggermesh/awscloudwatchlogssource-adapter:v1.11.0
+        - name: AWSCODECOMMITSOURCE_IMAGE
+          value: gcr.io/triggermesh/awscodecommitsource-adapter:v1.11.0
+        - name: AWSCOGNITOIDENTITYSOURCE_IMAGE
+          value: gcr.io/triggermesh/awscognitoidentitysource-adapter:v1.11.0
+        - name: AWSCOGNITOUSERPOOLSOURCE_IMAGE
+          value: gcr.io/triggermesh/awscognitouserpoolsource-adapter:v1.11.0
+        - name: AWSDYNAMODBSOURCE_IMAGE
+          value: gcr.io/triggermesh/awsdynamodbsource-adapter:v1.11.0
+        - name: AWSKINESISSOURCE_IMAGE
+          value: gcr.io/triggermesh/awskinesissource-adapter:v1.11.0
+        - name: AWSPERFORMANCEINSIGHTSSOURCE_IMAGE
+          value: gcr.io/triggermesh/awsperformanceinsightssource-adapter:v1.11.0
+        - name: AWSSNSSOURCE_IMAGE
+          value: gcr.io/triggermesh/awssnssource-adapter:v1.11.0
+        - name: AWSSQSSOURCE_IMAGE
+          value: gcr.io/triggermesh/awssqssource-adapter:v1.11.0
+        - name: AZUREEVENTHUBSOURCE_IMAGE
+          value: gcr.io/triggermesh/azureeventhubsource-adapter:v1.11.0
+        - name: AZUREIOTHUBSOURCE_IMAGE
+          value: gcr.io/triggermesh/azureiothubsource-adapter:v1.11.0
+        - name: AZUREQUEUESTORAGESOURCE_IMAGE
+          value: gcr.io/triggermesh/azurequeuestoragesource-adapter:v1.11.0
+        - name: AZURESERVICEBUSQUEUESOURCE_IMAGE
+          value: gcr.io/triggermesh/azureservicebusqueuesource-adapter:v1.11.0
+        - name: AZURESERVICEBUSTOPICSOURCE_IMAGE
+          value: gcr.io/triggermesh/azureservicebustopicsource-adapter:v1.11.0
+        - name: GOOGLECLOUDPUBSUBSOURCE_IMAGE
+          value: gcr.io/triggermesh/googlecloudpubsubsource-adapter:v1.11.0
+
+        securityContext:
+          allowPrivilegeEscalation: false
+
+        ports:
+        - name: metrics
+          containerPort: 9090
+        - name: profiling
+          containerPort: 8008

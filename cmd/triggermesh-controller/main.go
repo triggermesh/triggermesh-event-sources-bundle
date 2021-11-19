@@ -24,6 +24,7 @@ import (
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureiothubsource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azurequeuestoragesource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureservicebusqueuesource"
+	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureservicebustopicsource"
 
 	// GCP Event Sources
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudauditlogssource"
@@ -57,9 +58,7 @@ func main() {
 		azureiothubsource.NewController,
 		azurequeuestoragesource.NewController,
 		azureservicebusqueuesource.NewController,
-		/* Next TriggerMesh release
 		azureservicebustopicsource.NewController,
-		*/
 
 		// GCP Event Sources
 		googlecloudauditlogssource.NewController,

@@ -59,13 +59,13 @@ spec:
             properties:
               arn:
                 description: |-
-                  ARN of the S3 bucket to receive notifications from. The expected format is documented at
+                  ARN of the Amazon S3 bucket to receive notifications from. The expected format is documented at
                   https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html#amazons3-resources-for-iam-policies.
 
                   Although not technically supported by S3, the ARN provided via this attribute may include a region and
                   an account ID. When this information is provided, it is used to set an accurate identity-based access
                   policy between the S3 bucket and the reconciled SQS queue, unless an existing queue is provided via
-                  the queueARN attribute.
+                  the 'destination.sqs.queueARN' attribute.
                 type: string
                 # Bucket naming rules
                 # https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
@@ -94,62 +94,76 @@ spec:
                   - s3:Replication:OperationNotTracked
                   - s3:Replication:OperationMissedThreshold
                   - s3:Replication:OperationReplicatedAfterThreshold
-              queueARN:
-                description: ARN of the Amazon SQS queue that should be receiving notifications from the Amazon S3
-                  bucket. When not provided, a SQS queue is automatically created and associated with the bucket. The
-                  expected format is documented at
-                  https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsqs.html#amazonsqs-resources-for-iam-policies.
-                type: string
-                pattern: ^arn:aws(-cn|-us-gov)?:sqs:[a-z]{2}(-gov)?-[a-z]+-\d:\d{12}:.+$
-              credentials:
-                description: Credentials to interact with the Amazon S3 and SQS APIs. For more information about AWS
-                  security credentials, please refer to the AWS General Reference at
-                  https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html
+              destination:
+                description: The destination of notifications originating from the Amazon S3 bucket. If omitted, an
+                  Amazon SQS queue is automatically created and associated with the bucket.
                 type: object
                 properties:
-                  accessKeyID:
-                    description: Access key ID.
+                  sqs:
+                    description: Properties of an Amazon SQS queue to use as destination for bucket notifications.
                     type: object
                     properties:
-                      value:
-                        description: Literal value of the access key ID.
+                      queueARN:
+                        description: ARN of the Amazon SQS queue that should be receiving bucket notifications. The
+                          expected format is documented at
+                          https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsqs.html#amazonsqs-resources-for-iam-policies.
                         type: string
-                      valueFromSecret:
-                        description: A reference to a Kubernetes Secret object containing the access key ID.
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          key:
-                            type: string
-                        required:
-                        - name
-                        - key
-                    oneOf:
-                    - required: [value]
-                    - required: [valueFromSecret]
-                  secretAccessKey:
-                    description: Secret access key.
+                        pattern: ^arn:aws(-cn|-us-gov)?:sqs:[a-z]{2}(-gov)?-[a-z]+-\d:\d{12}:.+$
+                    required:
+                    - queueARN
+              auth:
+                description: Authentication method to interact with the Amazon S3 and SQS APIs.
+                type: object
+                properties:
+                  credentials:
+                    description: Security credentials authentication. For more information about AWS security
+                      credentials, please refer to the AWS General Reference at
+                      https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html.
                     type: object
                     properties:
-                      value:
-                        description: Literal value of the secret access key.
-                        type: string
-                        format: password
-                      valueFromSecret:
-                        description: A reference to a Kubernetes Secret object containing the secret access key.
+                      accessKeyID:
+                        description: Access key ID.
                         type: object
                         properties:
-                          name:
+                          value:
+                            description: Literal value of the access key ID.
                             type: string
-                          key:
+                          valueFromSecret:
+                            description: A reference to a Kubernetes Secret object containing the access key ID.
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              key:
+                                type: string
+                            required:
+                            - name
+                            - key
+                        oneOf:
+                        - required: [value]
+                        - required: [valueFromSecret]
+                      secretAccessKey:
+                        description: Secret access key.
+                        type: object
+                        properties:
+                          value:
+                            description: Literal value of the secret access key.
                             type: string
-                        required:
-                        - name
-                        - key
-                    oneOf:
-                    - required: [value]
-                    - required: [valueFromSecret]
+                            format: password
+                          valueFromSecret:
+                            description: A reference to a Kubernetes Secret object containing the secret access key.
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              key:
+                                type: string
+                            required:
+                            - name
+                            - key
+                        oneOf:
+                        - required: [value]
+                        - required: [valueFromSecret]
               sink:
                 description: The destination of events sourced from Amazon S3.
                 type: object

@@ -84,7 +84,7 @@ rules:
   - googlecloudbillingsources
   - googlecloudiotsources
   - googlecloudpubsubsources
-  - googlecloudrepositoriessources
+  - googlecloudsourcerepositoriessources
   - googlecloudstoragesources
   verbs:
   - list
@@ -116,7 +116,7 @@ rules:
   - googlecloudbillingsources/status
   - googlecloudiotsources/status
   - googlecloudpubsubsources/status
-  - googlecloudrepositoriessources/status
+  - googlecloudsourcerepositoriessources/status
   - googlecloudstoragesources/status
   verbs:
   - update
@@ -149,7 +149,7 @@ rules:
   - googlecloudbillingsources/finalizers
   - googlecloudiotsources/finalizers
   - googlecloudpubsubsources/finalizers
-  - googlecloudrepositoriessources/finalizers
+  - googlecloudsourcerepositoriessources/finalizers
   - googlecloudstoragesources/finalizers
   verbs:
   - update
@@ -169,7 +169,7 @@ rules:
   - googlecloudbillingsources
   - googlecloudiotsources
   - googlecloudpubsubsources
-  - googlecloudrepositoriessources
+  - googlecloudsourcerepositoriessources
   - googlecloudstoragesources
   verbs:
   - patch
@@ -341,7 +341,7 @@ rules:
   - googlecloudbillingsources
   - googlecloudiotsources
   - googlecloudpubsubsources
-  - googlecloudrepositoriessources
+  - googlecloudsourcerepositoriessources
   - googlecloudstoragesources
   verbs:
   - get

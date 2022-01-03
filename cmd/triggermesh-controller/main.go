@@ -31,7 +31,7 @@ import (
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudbillingsource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudiotsource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudpubsubsource"
-	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudrepositoriessource"
+	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudsourcerepositoriessource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudstoragesource"
 )
 
@@ -65,7 +65,7 @@ func main() {
 		googlecloudbillingsource.NewController,
 		googlecloudiotsource.NewController,
 		googlecloudpubsubsource.NewController,
-		googlecloudrepositoriessource.NewController,
+		googlecloudsourcerepositoriessource.NewController,
 		googlecloudstoragesource.NewController,
 	)
 }

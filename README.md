@@ -37,7 +37,7 @@ A subset of the [TriggerMesh platform][tm-repo] containing only event sources.
   - Cloud Billing
   - Cloud IoT
   - Cloud Pub/Sub
-  - Cloud Repositories
+  - Cloud Source Repositories
   - Cloud Storage
 
 ## Creating a Release

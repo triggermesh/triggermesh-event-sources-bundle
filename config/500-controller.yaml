@@ -42,7 +42,10 @@ spec:
         resources:
           requests:
             cpu: 50m
-            memory: 20Mi
+            memory: 100Mi
+          limits:
+            cpu: 200m
+            memory: 300Mi
 
         env:
         - name: SYSTEM_NAMESPACE
@@ -58,38 +61,42 @@ spec:
           value: triggermesh.io
         # Source adapters
         - name: AWSCLOUDWATCHSOURCE_IMAGE
-          value: gcr.io/triggermesh/awscloudwatchsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awscloudwatchsource-adapter:v1.18.0
         - name: AWSCLOUDWATCHLOGSSOURCE_IMAGE
-          value: gcr.io/triggermesh/awscloudwatchlogssource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awscloudwatchlogssource-adapter:v1.18.0
         - name: AWSCODECOMMITSOURCE_IMAGE
-          value: gcr.io/triggermesh/awscodecommitsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awscodecommitsource-adapter:v1.18.0
         - name: AWSCOGNITOIDENTITYSOURCE_IMAGE
-          value: gcr.io/triggermesh/awscognitoidentitysource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awscognitoidentitysource-adapter:v1.18.0
         - name: AWSCOGNITOUSERPOOLSOURCE_IMAGE
-          value: gcr.io/triggermesh/awscognitouserpoolsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awscognitouserpoolsource-adapter:v1.18.0
         - name: AWSDYNAMODBSOURCE_IMAGE
-          value: gcr.io/triggermesh/awsdynamodbsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awsdynamodbsource-adapter:v1.18.0
         - name: AWSKINESISSOURCE_IMAGE
-          value: gcr.io/triggermesh/awskinesissource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awskinesissource-adapter:v1.18.0
         - name: AWSPERFORMANCEINSIGHTSSOURCE_IMAGE
-          value: gcr.io/triggermesh/awsperformanceinsightssource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awsperformanceinsightssource-adapter:v1.18.0
         - name: AWSSNSSOURCE_IMAGE
-          value: gcr.io/triggermesh/awssnssource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awssnssource-adapter:v1.18.0
         - name: AWSSQSSOURCE_IMAGE
-          value: gcr.io/triggermesh/awssqssource-adapter:v1.17.0
+          value: gcr.io/triggermesh/awssqssource-adapter:v1.18.0
         - name: AZUREEVENTHUBSOURCE_IMAGE
-          value: gcr.io/triggermesh/azureeventhubsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/azureeventhubsource-adapter:v1.18.0
         - name: AZUREIOTHUBSOURCE_IMAGE
-          value: gcr.io/triggermesh/azureiothubsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/azureiothubsource-adapter:v1.18.0
         - name: AZUREQUEUESTORAGESOURCE_IMAGE
-          value: gcr.io/triggermesh/azurequeuestoragesource-adapter:v1.17.0
+          value: gcr.io/triggermesh/azurequeuestoragesource-adapter:v1.18.0
         - name: AZURESERVICEBUSSOURCE_IMAGE
-          value: gcr.io/triggermesh/azureservicebussource-adapter:v1.17.0
+          value: gcr.io/triggermesh/azureservicebussource-adapter:v1.18.0
         - name: GOOGLECLOUDPUBSUBSOURCE_IMAGE
-          value: gcr.io/triggermesh/googlecloudpubsubsource-adapter:v1.17.0
+          value: gcr.io/triggermesh/googlecloudpubsubsource-adapter:v1.18.0
 
         securityContext:
+          runAsNonRoot: true
           allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [all]
 
         ports:
         - name: metrics

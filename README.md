@@ -16,6 +16,7 @@ A subset of the [TriggerMesh platform][tm-repo] containing only event sources.
   - Cognito Identity
   - Cognito User Pool
   - DynamoDB
+  - EventBridge
   - Kinesis
   - Performance Insights
   - Simple Cloud Storage (S3)

@@ -5,7 +5,7 @@ go 1.18
 replace k8s.io/client-go => k8s.io/client-go v0.23.5
 
 require (
-	github.com/triggermesh/triggermesh v1.17.1-0.20220527140956-35113a1fc286
+	github.com/triggermesh/triggermesh v1.18.1
 	knative.dev/pkg v0.0.0-20220525153005-18f69958870f
 )
 
@@ -33,7 +33,7 @@ require (
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20220209173558-ad29539cd2e9 // indirect
-	github.com/aws/aws-sdk-go v1.44.21 // indirect
+	github.com/aws/aws-sdk-go v1.44.24 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/blendle/zapdriver v1.3.1 // indirect

@@ -68,9 +68,9 @@ spec:
                     type: string
               messageProcessor:
                 description: Name of the message processor to use for converting SQS messages to CloudEvents. Supported values
-                  are "default" and "s3".
+                  are "default", "s3", and "eventbridge".
                 type: string
-                enum: [default, s3]
+                enum: [default, s3, eventbridge]
               auth:
                 description: Authentication method to interact with the Amazon SQS API.
                 type: object

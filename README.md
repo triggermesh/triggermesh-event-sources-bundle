@@ -60,5 +60,15 @@ $ ls _output
 triggermesh-crds.yaml  triggermesh.yaml
 ```
 
+## Syncing From Triggermesh Repo
+
+To keep the contents of this repository up to date after each TriggerMesh release, manifests and source files must be updated using the synchronization script:
+
+```console
+hack/sync-from-tmtm.sh
+```
+
+The script itself and the controller manifest should be updated if sources are added, removed or renamed.
+
 [tm-repo]: https://github.com/triggermesh/triggermesh
 [tm-contrib-ko]: https://github.com/triggermesh/triggermesh/blob/main/CONTRIBUTING.md#ko

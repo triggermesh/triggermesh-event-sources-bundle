@@ -24,15 +24,51 @@ metadata:
   annotations:
     registry.knative.dev/eventTypes: |
       [
-        { "type": "Microsoft.Storage.BlobCreated" },
-        { "type": "Microsoft.Storage.BlobDeleted" },
-        { "type": "Microsoft.Storage.BlobRenamed" },
-        { "type": "Microsoft.Storage.DirectoryCreated" },
-        { "type": "Microsoft.Storage.DirectoryDeleted" },
-        { "type": "Microsoft.Storage.DirectoryRenamed" },
-        { "type": "Microsoft.Storage.BlobTierChanged" },
-        { "type": "Microsoft.Storage.AsyncOperationInitiated" },
-        { "type": "Microsoft.Storage.BlobInventoryPolicyCompleted" }
+        {
+          "type": "Microsoft.Storage.BlobCreated",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.BlobDeleted",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.BlobRenamed",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.DirectoryCreated",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.DirectoryDeleted",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.DirectoryRenamed",
+           "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.BlobTierChanged",
+           "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.AsyncOperationInitiated",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        },
+        {
+          "type": "Microsoft.Storage.BlobInventoryPolicyCompleted",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.blobstorage.event.json",
+          "description": ""
+        }
       ]
 spec:
   group: sources.triggermesh.io
@@ -126,7 +162,8 @@ spec:
                 - eventHubs
               auth:
                 description: Authentication method to interact with the Azure Storage and Azure Event Hubs REST APIs. This
-                  event source only supports the Service Principal authentication.
+                  event source only supports the Service Principal authentication. If it not present, it will try to use Azure
+                  AKS Managed Identity
                 type: object
                 properties:
                   servicePrincipal:
@@ -232,7 +269,7 @@ spec:
                     description: URI to use as the destination of events.
                     type: string
                     format: uri
-                oneOf:
+                anyOf:
                 - required: [ref]
                 - required: [uri]
               adapterOverrides:
@@ -300,7 +337,6 @@ spec:
             required:
             - storageAccountID
             - endpoint
-            - auth
             - sink
           status:
             description: Reported status of the event source.

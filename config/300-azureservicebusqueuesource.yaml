@@ -24,7 +24,11 @@ metadata:
   annotations:
     registry.knative.dev/eventTypes: |
       [
-        { "type": "com.microsoft.azure.servicebus.message" }
+        {
+          "type": "com.microsoft.azure.servicebus.message",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.microsoft.azure.servicebus.message.json",
+          "description": ""
+        }
       ]
 spec:
   group: sources.triggermesh.io
@@ -61,7 +65,8 @@ spec:
                 type: string
                 pattern: ^\/subscriptions\/[a-z0-9-]+\/resourceGroups\/[\w.()-]+\/providers\/Microsoft.ServiceBus\/namespaces\/[A-Za-z0-9-]{6,50}\/queues\/[A-Za-z0-9][\w.~/-]{0,258}[A-Za-z0-9]$
               auth:
-                description: Authentication method to interact with the Azure Service Bus Queue.
+                description: Authentication method to interact with the Azure Service Bus Queue. If it not present, it will
+                  try to use Azure AKS Managed Identity
                 type: object
                 properties:
                   servicePrincipal:
@@ -243,7 +248,7 @@ spec:
                     description: URI to use as the destination of events.
                     type: string
                     format: uri
-                oneOf:
+                anyOf:
                 - required: [ref]
                 - required: [uri]
               adapterOverrides:
@@ -310,7 +315,6 @@ spec:
                           format: int64
             required:
             - queueID
-            - auth
             - sink
           status:
             description: Reported status of the event source.

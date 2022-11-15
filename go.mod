@@ -6,6 +6,7 @@ replace k8s.io/client-go => k8s.io/client-go v0.23.5
 
 require (
 	github.com/triggermesh/triggermesh v1.21.1
+	knative.dev/eventing v0.31.1-0.20220523181303-c3e13967001f
 	knative.dev/pkg v0.0.0-20220525153005-18f69958870f
 )
 
@@ -25,6 +26,9 @@ require (
 	github.com/Azure/azure-pipeline-go v0.1.9 // indirect
 	github.com/Azure/azure-sdk-for-go v66.0.0+incompatible // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.1.3 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.1.0 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/internal v1.0.0 // indirect
+	github.com/Azure/azure-sdk-for-go/sdk/messaging/azservicebus v1.1.0 // indirect
 	github.com/Azure/azure-storage-queue-go v0.0.0-20191125232315-636801874cdd // indirect
 	github.com/Azure/go-amqp v0.17.4 // indirect
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
@@ -37,6 +41,7 @@ require (
 	github.com/Azure/go-autorest/autorest/validation v0.3.1 // indirect
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
+	github.com/AzureAD/microsoft-authentication-library-for-go v0.5.1 // indirect
 	github.com/amenzhinsky/iothub v0.9.0 // indirect
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20220209173558-ad29539cd2e9 // indirect
 	github.com/aws/aws-sdk-go v1.44.112 // indirect
@@ -55,6 +60,7 @@ require (
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
+	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -75,12 +81,15 @@ require (
 	github.com/jpillora/backoff v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
+	github.com/klauspost/compress v1.15.11 // indirect
+	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/openzipkin/zipkin-go v0.3.0 // indirect
+	github.com/pkg/browser v0.0.0-20210115035449-ce105d075bb4 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_golang v1.12.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
@@ -124,9 +133,9 @@ require (
 	k8s.io/klog/v2 v2.60.1-0.20220317184644-43cc75f9ae89 // indirect
 	k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
-	knative.dev/eventing v0.31.1-0.20220523181303-c3e13967001f // indirect
 	knative.dev/networking v0.0.0-20220412163509-1145ec58c8be // indirect
 	knative.dev/serving v0.31.0 // indirect
+	nhooyr.io/websocket v1.8.7 // indirect
 	sigs.k8s.io/json v0.0.0-20211208200746-9f7c6b3444d2 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect

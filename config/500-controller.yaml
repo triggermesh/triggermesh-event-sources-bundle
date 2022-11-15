@@ -61,35 +61,35 @@ spec:
           value: triggermesh.io
         # Source adapters
         - name: AWSCLOUDWATCHSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awscloudwatchsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awscloudwatchsource-adapter
         - name: AWSCLOUDWATCHLOGSSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awscloudwatchlogssource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awscloudwatchlogssource-adapter
         - name: AWSCODECOMMITSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awscodecommitsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awscodecommitsource-adapter
         - name: AWSCOGNITOIDENTITYSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awscognitoidentitysource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awscognitoidentitysource-adapter
         - name: AWSCOGNITOUSERPOOLSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awscognitouserpoolsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awscognitouserpoolsource-adapter
         - name: AWSDYNAMODBSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awsdynamodbsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awsdynamodbsource-adapter
         - name: AWSKINESISSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awskinesissource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awskinesissource-adapter
         - name: AWSPERFORMANCEINSIGHTSSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awsperformanceinsightssource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awsperformanceinsightssource-adapter
         - name: AWSSNSSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awssnssource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awssnssource-adapter
         - name: AWSSQSSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/awssqssource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awssqssource-adapter
         - name: AZUREEVENTHUBSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/azureeventhubsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azureeventhubsource-adapter
         - name: AZUREIOTHUBSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/azureiothubsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azureiothubsource-adapter
         - name: AZUREQUEUESTORAGESOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/azurequeuestoragesource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azurequeuestoragesource-adapter
         - name: AZURESERVICEBUSSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/azureservicebussource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azureservicebussource-adapter
         - name: GOOGLECLOUDPUBSUBSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh/cmd/googlecloudpubsubsource-adapter
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/googlecloudpubsubsource-adapter
 
         securityContext:
           runAsNonRoot: true

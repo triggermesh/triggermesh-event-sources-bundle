@@ -24,7 +24,11 @@ metadata:
   annotations:
     registry.knative.dev/eventTypes: |
       [
-        { "type": "com.amazon.sns.notification" }
+        {
+          "type": "com.amazon.sns.notification",
+          "schema": "https://raw.githubusercontent.com/triggermesh/triggermesh/main/schemas/com.amazon.sns.notification.json",
+          "description": ""
+        }
       ]
 spec:
   group: sources.triggermesh.io
@@ -157,7 +161,7 @@ spec:
                     description: URI to use as the destination of events.
                     type: string
                     format: uri
-                oneOf:
+                anyOf:
                 - required: [ref]
                 - required: [uri]
               adapterOverrides:

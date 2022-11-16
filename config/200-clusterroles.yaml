@@ -67,6 +67,7 @@ rules:
   - awscognitoidentitysources
   - awscognitouserpoolsources
   - awsdynamodbsources
+  - awseventbridgesources
   - awskinesissources
   - awsperformanceinsightssources
   - awss3sources
@@ -99,6 +100,7 @@ rules:
   - awscognitoidentitysources/status
   - awscognitouserpoolsources/status
   - awsdynamodbsources/status
+  - awseventbridgesources/status
   - awskinesissources/status
   - awsperformanceinsightssources/status
   - awss3sources/status
@@ -132,6 +134,7 @@ rules:
   - awscognitoidentitysources/finalizers
   - awscognitouserpoolsources/finalizers
   - awsdynamodbsources/finalizers
+  - awseventbridgesources/finalizers
   - awskinesissources/finalizers
   - awsperformanceinsightssources/finalizers
   - awss3sources/finalizers
@@ -158,6 +161,7 @@ rules:
 - apiGroups:
   - sources.triggermesh.io
   resources:
+  - awseventbridgesources
   - awss3sources
   - awssnssources
   - azureactivitylogssources
@@ -325,6 +329,7 @@ rules:
   - awscognitoidentitysources
   - awscognitouserpoolsources
   - awsdynamodbsources
+  - awseventbridgesources
   - awskinesissources
   - awsperformanceinsightssources
   - awss3sources

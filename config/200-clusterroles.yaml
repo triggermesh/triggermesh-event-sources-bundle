@@ -76,14 +76,13 @@ rules:
   - azureactivitylogssources
   - azureblobstoragesources
   - azureeventgridsources
-  - azureeventhubsources
+  - azureeventhubssources
   - azureiothubsources
   - azurequeuestoragesources
   - azureservicebusqueuesources
   - azureservicebustopicsources
   - googlecloudauditlogssources
   - googlecloudbillingsources
-  - googlecloudiotsources
   - googlecloudpubsubsources
   - googlecloudsourcerepositoriessources
   - googlecloudstoragesources
@@ -109,14 +108,13 @@ rules:
   - azureactivitylogssources/status
   - azureblobstoragesources/status
   - azureeventgridsources/status
-  - azureeventhubsources/status
+  - azureeventhubssources/status
   - azureiothubsources/status
   - azurequeuestoragesources/status
   - azureservicebusqueuesources/status
   - azureservicebustopicsources/status
   - googlecloudauditlogssources/status
   - googlecloudbillingsources/status
-  - googlecloudiotsources/status
   - googlecloudpubsubsources/status
   - googlecloudsourcerepositoriessources/status
   - googlecloudstoragesources/status
@@ -143,14 +141,13 @@ rules:
   - azureactivitylogssources/finalizers
   - azureblobstoragesources/finalizers
   - azureeventgridsources/finalizers
-  - azureeventhubsources/finalizers
+  - azureeventhubssources/finalizers
   - azureiothubsources/finalizers
   - azurequeuestoragesources/finalizers
   - azureservicebusqueuesources/finalizers
   - azureservicebustopicsources/finalizers
   - googlecloudauditlogssources/finalizers
   - googlecloudbillingsources/finalizers
-  - googlecloudiotsources/finalizers
   - googlecloudpubsubsources/finalizers
   - googlecloudsourcerepositoriessources/finalizers
   - googlecloudstoragesources/finalizers
@@ -171,7 +168,6 @@ rules:
   - azureservicebustopicsources
   - googlecloudauditlogssources
   - googlecloudbillingsources
-  - googlecloudiotsources
   - googlecloudpubsubsources
   - googlecloudsourcerepositoriessources
   - googlecloudstoragesources
@@ -338,14 +334,13 @@ rules:
   - azureactivitylogssources
   - azureblobstoragesources
   - azureeventgridsources
-  - azureeventhubsources
+  - azureeventhubssources
   - azureiothubsources
   - azurequeuestoragesources
   - azureservicebusqueuesources
   - azureservicebustopicsources
   - googlecloudauditlogssources
   - googlecloudbillingsources
-  - googlecloudiotsources
   - googlecloudpubsubsources
   - googlecloudsourcerepositoriessources
   - googlecloudstoragesources
@@ -370,14 +365,13 @@ rules:
   - azureactivitylogssources/finalizers
   - azureblobstoragesources/finalizers
   - azureeventgridsources/finalizers
-  - azureeventhubsources/finalizers
+  - azureeventhubssources/finalizers
   - azureiothubsources/finalizers
   - azurequeuestoragesources/finalizers
   - azureservicebusqueuesources/finalizers
   - azureservicebustopicsources/finalizers
   - googlecloudauditlogssources/finalizers
   - googlecloudbillingsources/finalizers
-  - googlecloudiotsources/finalizers
   - googlecloudpubsubsources/finalizers
   - googlecloudsourcerepositoriessources/finalizers
   - googlecloudstoragesources/finalizers

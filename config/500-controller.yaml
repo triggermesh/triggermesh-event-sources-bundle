@@ -80,8 +80,8 @@ spec:
           value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awssnssource-adapter
         - name: AWSSQSSOURCE_IMAGE
           value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/awssqssource-adapter
-        - name: AZUREEVENTHUBSOURCE_IMAGE
-          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azureeventhubsource-adapter
+        - name: AZUREEVENTHUBSSOURCE_IMAGE
+          value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azureeventhubssource-adapter
         - name: AZUREIOTHUBSOURCE_IMAGE
           value: ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/azureiothubsource-adapter
         - name: AZUREQUEUESTORAGESOURCE_IMAGE

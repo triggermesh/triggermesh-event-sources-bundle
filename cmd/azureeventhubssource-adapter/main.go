@@ -19,9 +19,9 @@ package main
 import (
 	"knative.dev/eventing/pkg/adapter/v2"
 
-	"github.com/triggermesh/triggermesh/pkg/sources/adapter/azureeventhubsource"
+	"github.com/triggermesh/triggermesh/pkg/sources/adapter/azureeventhubssource"
 )
 
 func main() {
-	adapter.Main("azureeventhubsource", azureeventhubsource.NewEnvConfig, azureeventhubsource.NewAdapter)
+	adapter.Main("azureeventhubssource", azureeventhubssource.NewEnvConfig, azureeventhubssource.NewAdapter)
 }

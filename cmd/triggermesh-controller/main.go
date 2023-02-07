@@ -21,7 +21,7 @@ import (
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureactivitylogssource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureblobstoragesource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureeventgridsource"
-	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureeventhubsource"
+	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureeventhubssource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureiothubsource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azurequeuestoragesource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/azureservicebusqueuesource"
@@ -30,7 +30,6 @@ import (
 	// GCP Event Sources
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudauditlogssource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudbillingsource"
-	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudiotsource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudpubsubsource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudsourcerepositoriessource"
 	"github.com/triggermesh/triggermesh/pkg/sources/reconciler/googlecloudstoragesource"
@@ -56,7 +55,7 @@ func main() {
 		azureactivitylogssource.NewController,
 		azureblobstoragesource.NewController,
 		azureeventgridsource.NewController,
-		azureeventhubsource.NewController,
+		azureeventhubssource.NewController,
 		azureiothubsource.NewController,
 		azurequeuestoragesource.NewController,
 		azureservicebusqueuesource.NewController,
@@ -65,7 +64,6 @@ func main() {
 		// GCP Event Sources
 		googlecloudauditlogssource.NewController,
 		googlecloudbillingsource.NewController,
-		googlecloudiotsource.NewController,
 		googlecloudpubsubsource.NewController,
 		googlecloudsourcerepositoriessource.NewController,
 		googlecloudstoragesource.NewController,

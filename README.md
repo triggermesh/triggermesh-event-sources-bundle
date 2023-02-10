@@ -36,7 +36,6 @@ A subset of the [TriggerMesh platform][tm-repo] containing only event sources.
 - Event Sources for Google Cloud Platform
   - Cloud Audit Logs
   - Cloud Billing
-  - Cloud IoT
   - Cloud Pub/Sub
   - Cloud Source Repositories
   - Cloud Storage

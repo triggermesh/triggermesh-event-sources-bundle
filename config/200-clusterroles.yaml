@@ -219,6 +219,7 @@ rules:
   resources:
   - configmaps
   verbs:
+  - get
   - list
   - watch
 - apiGroups:
@@ -250,6 +251,21 @@ rules:
   verbs:
   - list
 
+# Observe status of Pods and their ancestors
+- apiGroups:
+  - ''
+  resources:
+  - pods
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - list
+  - watch
 ---
 
 apiVersion: rbac.authorization.k8s.io/v1
@@ -303,6 +319,25 @@ rules:
   - create
   - update
 
+---
+
+# This role is used to grant receive adapters read-only access to per-component
+# configurations such as logging, observability and tracing.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: triggermesh-config-watcher
+  labels:
+    app.kubernetes.io/part-of: triggermesh
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - configmaps
+  verbs:
+  - list
+  - watch
+  - get
 ---
 
 # This role provides readonly access to "Source" duck types.

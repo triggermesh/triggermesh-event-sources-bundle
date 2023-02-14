@@ -58,7 +58,7 @@ jobs:
     executor:
       name: go/default
       tag: '1.19.1'
-    resource_class: medium
+    resource_class: xlarge
     steps:
       - checkout
       - gcp-cli/install

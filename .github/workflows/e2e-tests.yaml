@@ -100,7 +100,7 @@ jobs:
         kubectl -n knative-eventing wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/name=knative-eventing
 
     - name: Install Ginkgo
-      run: go install github.com/onsi/ginkgo/v2/ginkgo@latest
+      run: go install github.com/onsi/ginkgo/v2/ginkgo
 
     - name: Export KUBECONFIG path
       run: echo "KUBECONFIG=${HOME}/.kube/config" >> $GITHUB_ENV

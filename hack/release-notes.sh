@@ -25,7 +25,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-IMAGE_REPO=${IMAGE_REPO:-"gcr.io/triggermesh"}
+IMAGE_REPO=${IMAGE_REPO:-"gcr.io/triggermesh/event-sources-bundle"}
 PLATFORMS=$(sed -n -e "s/^\(TARGETS[[:space:]]*?=[[:space:]]*\)\(.*\)$/\2/p" Makefile)
 RELEASE_ASSETS_TABLE=$(
   echo -n "| component | container |"; echo

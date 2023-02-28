@@ -19,7 +19,7 @@ jobs:
           -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          https://api.github.com/repos/triggermesh/triggermesh/statuses/${{ github.event.client_payload.commit_sha }} \
+          https://api.github.com/repos/triggermesh/triggermesh-event-sources-bundle/statuses/${{ github.event.client_payload.commit_sha }} \
           -d '{"state":"pending","target_url":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}","context":"${{ github.workflow }}"}'
 
     - name: Set up Go
@@ -91,7 +91,7 @@ jobs:
     - name: Deploy TriggerMesh
       run: |
         sed -i config/500-*.yaml \
-          -e "s|ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/\(.*$\)|gcr.io/triggermesh/event-sources-bundle/\1:${{ github.event.client_payload.commit_sha }}|g"
+          -e "s|ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/\(.*$\)|gcr.io/triggermesh/event-sources-bundle/\1:${{ github.event.client_payload.image_tag }}|g"
 
         kubectl apply -f config/
 
@@ -133,7 +133,7 @@ jobs:
           -X POST \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          https://api.github.com/repos/triggermesh/triggermesh/statuses/${{ github.event.client_payload.commit_sha }} \
+          https://api.github.com/repos/triggermesh/triggermesh-event-sources-bundle/statuses/${{ github.event.client_payload.commit_sha }} \
           -d '{"state":"${{ steps.e2e.outcome == 'success' && 'success' || 'failure' }}","target_url":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}","context":"${{ github.workflow }}"}'
 
     # The KinD cluster can get shut down before all API objects created during

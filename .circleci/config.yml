@@ -106,7 +106,7 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
               https://api.github.com/repos/triggermesh/triggermesh-event-sources-bundle/dispatches \
-              -d '{"event_type":"e2e-test","client_payload":{"commit_sha":"'${CIRCLE_SHA1}'"}}'
+              -d '{"event_type":"e2e-test","client_payload":{"commit_sha":"'${CIRCLE_SHA1}'", "image_tag":"'${CIRCLE_TAG:-${CIRCLE_SHA1}}'"}}'
 
   release:
     executor:

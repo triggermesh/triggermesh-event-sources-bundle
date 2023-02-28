@@ -7,11 +7,13 @@ replace k8s.io/client-go => k8s.io/client-go v0.23.5
 require (
 	github.com/onsi/ginkgo/v2 v2.8.0
 	github.com/onsi/gomega v1.25.0
-	github.com/triggermesh/triggermesh v1.24.0
+	github.com/triggermesh/triggermesh v1.24.1-0.20230228163621-c86f3c47d57a
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
 	knative.dev/eventing v0.31.1-0.20220523181303-c3e13967001f
 	knative.dev/pkg v0.0.0-20220818004048-4a03844c0b15
 )
+
+// c86f3c47d57acc294e73fe6cb1c200914f742fe2
 
 require (
 	cloud.google.com/go v0.105.0 // indirect

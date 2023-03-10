@@ -82,7 +82,7 @@ jobs:
 
     - name: Publish container images
       env:
-        KO_DOCKER_REPO: gcr.io/triggermesh/triggermesh/event-sources-bundle
+        KO_DOCKER_REPO: gcr.io/triggermesh/event-sources-bundle
         KOFLAGS: --jobs=4 --platform=linux/amd64,linux/arm64 --push=${{ github.event_name != 'pull_request' }}
         DIST_DIR: /tmp/dist
       run: |

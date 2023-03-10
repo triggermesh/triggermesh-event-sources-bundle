@@ -37,6 +37,9 @@ GOPKGS             = ./cmd/...
 LDFLAGS            = -w -s
 LDFLAGS_STATIC     = $(LDFLAGS) -extldflags=-static
 
+SED               := sed -i
+TAG_REGEX         := ^v([0-9]{1,}\.){2}[0-9]{1,}$
+
 .PHONY: help all release fmt fmt-test clean clean
 
 all: build
@@ -52,7 +55,10 @@ $(COMMANDS): ## Build artifact
 release: ## Publish container images and generate release manifests
 	@mkdir -p $(DIST_DIR)
 	$(KO) resolve -f config/ -l 'triggermesh.io/crd-install' > $(DIST_DIR)/triggermesh-crds.yaml
-	$(KO) resolve $(KOFLAGS) -t $(IMAGE_TAG) -B --tag-only -f config/ -l '!triggermesh.io/crd-install' > $(DIST_DIR)/triggermesh.yaml
+ifeq ($(shell echo ${IMAGE_TAG} | egrep "${TAG_REGEX}"),${IMAGE_TAG})
+	$(KO) resolve $(KOFLAGS) -B -t latest -f config/ -l '!triggermesh.io/crd-install' > /dev/null
+endif
+	$(KO) resolve $(KOFLAGS) -B -t $(IMAGE_TAG) --tag-only -f config/ -l '!triggermesh.io/crd-install' > $(DIST_DIR)/triggermesh.yaml
 
 fmt: ## Format source files
 	$(GOFMT) -s -w $(shell $(GO) list -f '{{$$d := .Dir}}{{range .GoFiles}}{{$$d}}/{{.}} {{end}} {{$$d := .Dir}}{{range .TestGoFiles}}{{$$d}}/{{.}} {{end}}' $(GOPKGS))

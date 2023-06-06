@@ -63,7 +63,8 @@ spec:
                   - a top-level resource from a resource provider (including Event Grid topic)
                     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
                 type: string
-                pattern: ^\/subscriptions\/[a-z0-9-]+(?:\/resourceGroups\/[\w.()-]+(?:\/providers\/[A-Za-z.]+\/[a-zA-Z0-9][\w.-]+\/[a-zA-Z0-9][\w.-]+)?)?$
+                pattern:
+                  ^\/subscriptions\/[a-z0-9-]+(?:\/resourceGroups\/[\w.()-]+(?:\/providers\/[A-Za-z.]+\/[a-zA-Z0-9][\w.-]+\/[a-zA-Z0-9][\w.-]+)?)?$
               eventTypes:
                 description: |-
                   Types of events to subscribe to.
@@ -97,6 +98,12 @@ spec:
                           instance is created on behalf of the user.
                         type: string
                         pattern: ^[A-Za-z0-9][\w.-]{0,49}$
+                      consumerGroup:
+                        description: A view (state, position, or offset) of an entire event hub. Consumer groups enable consuming
+                          applications to each have a separate view of the event stream. They read the stream independently
+                          at their own pace and with their own offsets. For more information about Event Hubs Consumer Groups,
+                          please refer to https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups.
+                        type: string
                     required:
                     - namespaceID
                 required:
@@ -217,6 +224,16 @@ spec:
                 description: Kubernetes object parameters to apply on top of default adapter values.
                 type: object
                 properties:
+                  annotations:
+                    description: Adapter annotations.
+                    type: object
+                    additionalProperties:
+                      type: string
+                  labels:
+                    description: Adapter labels.
+                    type: object
+                    additionalProperties:
+                      type: string
                   env:
                     description: Adapter environment variables.
                     type: array
@@ -253,6 +270,7 @@ spec:
                         type: object
                   tolerations:
                     description: Pod tolerations, as documented at https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+                      Tolerations require additional configuration for Knative-based deployments - https://knative.dev/docs/serving/configuration/feature-flags/
                     type: array
                     items:
                       type: object
@@ -275,6 +293,18 @@ spec:
                           description: Period of time a toleration of effect NoExecute tolerates the taint.
                           type: integer
                           format: int64
+                  nodeSelector:
+                    description: NodeSelector only allow the object pods to be created at nodes where all selector labels
+                      are present, as documented at https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector.
+                      NodeSelector require additional configuration for Knative-based deployments - https://knative.dev/docs/serving/configuration/feature-flags/
+                    type: object
+                    additionalProperties:
+                      type: string
+                  affinity:
+                    description: Scheduling constraints of the pod. More info at https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity.
+                      Affinity require additional configuration for Knative-based deployments - https://knative.dev/docs/serving/configuration/feature-flags/
+                    type: object
+                    x-kubernetes-preserve-unknown-fields: true
             required:
             - scope
             - endpoint

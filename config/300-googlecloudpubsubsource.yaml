@@ -67,8 +67,8 @@ spec:
                 type: string
                 pattern: ^[a-zA-Z][\w-.~%+]{2,254}$
               serviceAccountKey:
-                description: Service account key used to authenticate the event source and allow it to interact with Google
-                  Cloud APIs. Only the JSON format is supported.
+                description: Deprecated - please use spec.auth.serviceAccountKey. Service account key used to authenticate
+                  the event source and allow it to interact with Google Cloud APIs. Only the JSON format is supported.
                 type: object
                 properties:
                   value:
@@ -88,6 +88,45 @@ spec:
                 oneOf:
                 - required: [value]
                 - required: [valueFromSecret]
+              auth:
+                description:
+                type: object
+                properties:
+                  serviceAccountKey:
+                    description: Service account key used to authenticate the event source and allow it to interact with Google
+                      Cloud APIs. Only the JSON format is supported.
+                    type: object
+                    properties:
+                      value:
+                        description: Literal value of the service account key.
+                        type: string
+                      valueFromSecret:
+                        description: A reference to a Kubernetes Secret object containing the service account key.
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          key:
+                            type: string
+                        required:
+                        - name
+                        - key
+                    oneOf:
+                    - required: [value]
+                    - required: [valueFromSecret]
+                  gcpServiceAccount:
+                    description: GCP Service account name to impersonate Identity and Access Management (IAM) service accounts
+                      to access Google Cloud services.
+                    pattern: ^[a-z0-9-]{6,30}@[a-z0-9-]{1,30}(?:\.[a-z0-9-]{1,30})?\.gserviceaccount\.com$
+                    type: string
+                  kubernetesServiceAccount:
+                    description: The name of the Kubernetes Service account that will be created and bound to the gcpServiceAccount
+                      to act as an IAM service account. Optional, by default the Kubernetes service account name will be generated
+                      by the controller.
+                    type: string
+                oneOf:
+                - required: [serviceAccountKey]
+                - required: [gcpServiceAccount]
               sink:
                 description: The destination of events received via change notifications.
                 type: object
@@ -119,6 +158,16 @@ spec:
                 description: Kubernetes object parameters to apply on top of default adapter values.
                 type: object
                 properties:
+                  annotations:
+                    description: Adapter annotations.
+                    type: object
+                    additionalProperties:
+                      type: string
+                  labels:
+                    description: Adapter labels.
+                    type: object
+                    additionalProperties:
+                      type: string
                   env:
                     description: Adapter environment variables.
                     type: array
@@ -155,6 +204,7 @@ spec:
                         type: object
                   tolerations:
                     description: Pod tolerations, as documented at https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+                      Tolerations require additional configuration for Knative-based deployments - https://knative.dev/docs/serving/configuration/feature-flags/
                     type: array
                     items:
                       type: object
@@ -177,9 +227,20 @@ spec:
                           description: Period of time a toleration of effect NoExecute tolerates the taint.
                           type: integer
                           format: int64
+                  nodeSelector:
+                    description: NodeSelector only allow the object pods to be created at nodes where all selector labels
+                      are present, as documented at https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector.
+                      NodeSelector require additional configuration for Knative-based deployments - https://knative.dev/docs/serving/configuration/feature-flags/
+                    type: object
+                    additionalProperties:
+                      type: string
+                  affinity:
+                    description: Scheduling constraints of the pod. More info at https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity.
+                      Affinity require additional configuration for Knative-based deployments - https://knative.dev/docs/serving/configuration/feature-flags/
+                    type: object
+                    x-kubernetes-preserve-unknown-fields: true
             required:
             - topic
-            - serviceAccountKey
             - sink
           status:
             description: Reported status of the event source.

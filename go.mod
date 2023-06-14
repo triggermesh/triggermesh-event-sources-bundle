@@ -2,15 +2,24 @@ module github.com/triggermesh/triggermesh-event-sources-bundle
 
 go 1.18
 
+// Knative and CloudEvents are the common denominator to all TriggerMesh components.
+require (
+	github.com/cloudevents/sdk-go/v2 v2.13.0 // indirect
+	golang.org/x/net v0.9.0 // indirect
+	knative.dev/eventing v0.31.1-0.20220523181303-c3e13967001f
+	knative.dev/pkg v0.0.0-20220818004048-4a03844c0b15
+	knative.dev/serving v0.31.0 // indirect
+)
+
+// Top-level module control over the exact version used for important direct dependencies.
+// https://github.com/golang/go/wiki/Modules#when-should-i-use-the-replace-directive
 replace k8s.io/client-go => k8s.io/client-go v0.23.5
 
 require (
 	github.com/onsi/ginkgo/v2 v2.9.2
 	github.com/onsi/gomega v1.27.6
-	github.com/triggermesh/triggermesh v1.25.0
+	github.com/triggermesh/triggermesh v1.25.1
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
-	knative.dev/eventing v0.31.1-0.20220523181303-c3e13967001f
-	knative.dev/pkg v0.0.0-20220818004048-4a03844c0b15
 )
 
 require (
@@ -61,11 +70,11 @@ require (
 	github.com/census-instrumentation/opencensus-proto v0.4.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudevents/sdk-go/observability/opencensus/v2 v2.6.1 // indirect
-	github.com/cloudevents/sdk-go/v2 v2.13.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/devigned/tab v0.1.1 // indirect
 	github.com/dimchansky/utfbom v1.1.1 // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
+	github.com/fatih/color v1.9.0 // indirect
 	github.com/go-kit/log v0.1.0 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
@@ -85,6 +94,7 @@ require (
 	github.com/googleapis/gnostic v0.5.5 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
+	github.com/hashicorp/go-hclog v0.12.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.6.7 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
@@ -92,6 +102,7 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
 	github.com/klauspost/compress v1.15.14 // indirect
+	github.com/kr/pretty v0.3.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
@@ -118,7 +129,6 @@ require (
 	go.uber.org/multierr v1.7.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/crypto v0.6.0 // indirect
-	golang.org/x/net v0.9.0 // indirect
 	golang.org/x/oauth2 v0.6.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
@@ -143,7 +153,6 @@ require (
 	k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
 	knative.dev/networking v0.0.0-20220412163509-1145ec58c8be // indirect
-	knative.dev/serving v0.31.0 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
 	sigs.k8s.io/json v0.0.0-20211208200746-9f7c6b3444d2 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect

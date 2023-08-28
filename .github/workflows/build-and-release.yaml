@@ -128,6 +128,7 @@ jobs:
 
   trigger-e2e:
     name: Trigger E2E Tests
+    if: github.event_name != 'pull_request'
     needs: publish-images
     runs-on: ubuntu-latest
 

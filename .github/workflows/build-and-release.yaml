@@ -79,7 +79,7 @@ jobs:
         IMAGE_TAG=sha-${GITHUB_SHA:0:7}
         [[ ${GITHUB_REF_TYPE} == "tag" ]] && IMAGE_TAG=${GITHUB_REF_NAME}
         echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_OUTPUT
-        echo "IMAGE_TAG=${IMAGE_TAG}"
+        echo "using image ${IMAGE_TAG}"
 
     - name: Publish container images
       env:

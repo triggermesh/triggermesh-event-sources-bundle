@@ -18,7 +18,7 @@ replace k8s.io/client-go => k8s.io/client-go v0.23.5
 require (
 	github.com/onsi/ginkgo/v2 v2.11.0
 	github.com/onsi/gomega v1.27.10
-	github.com/triggermesh/triggermesh v1.26.0
+	github.com/triggermesh/triggermesh v1.26.1-0.20230808083113-2c8ea43a2fe6
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
 )
 

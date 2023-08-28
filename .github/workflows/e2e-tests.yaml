@@ -90,14 +90,18 @@ jobs:
 
     - name: Deploy TriggerMesh
       run: |
-        echo "IMAGE_TAG=${{ github.event.client_payload.image_tag }}"
+        echo "Image tag being used: ${{ github.event.client_payload.image_tag }}"
         sed -i config/500-*.yaml \
           -e "s|ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/\(.*$\)|gcr.io/triggermesh/event-sources-bundle/\1:${{ github.event.client_payload.image_tag }}|g"
 
         kubectl apply -f config/
 
+    - name: Wait for TriggerMesh deployment
+      run: |
         kubectl -n knative-serving  wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/name=knative-serving
         kubectl -n knative-eventing wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/name=knative-eventing
+
+        kubectl -n triggermesh      get pods -l app.kubernetes.io/part-of=triggermesh
         kubectl -n triggermesh      wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/part-of=triggermesh
 
     - name: Install Ginkgo

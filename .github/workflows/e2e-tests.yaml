@@ -102,6 +102,7 @@ jobs:
         kubectl -n knative-serving  wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/name=knative-serving
         kubectl -n knative-eventing wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/name=knative-eventing
 
+        kubectl -n triggermesh      get deployment -l app.kubernetes.io/part-of=triggermesh
         kubectl -n triggermesh      get pods -l app.kubernetes.io/part-of=triggermesh
         kubectl -n triggermesh      wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/part-of=triggermesh
 

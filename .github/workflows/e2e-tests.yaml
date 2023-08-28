@@ -94,6 +94,7 @@ jobs:
         sed -i config/500-*.yaml \
           -e "s|ko://github.com/triggermesh/triggermesh-event-sources-bundle/cmd/\(.*$\)|gcr.io/triggermesh/event-sources-bundle/\1:${{ github.event.client_payload.image_tag }}|g"
 
+        cat config/500-*.yaml
         kubectl apply -f config/
 
     - name: Wait for TriggerMesh deployment

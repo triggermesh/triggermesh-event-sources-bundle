@@ -88,7 +88,7 @@ jobs:
         DIST_DIR: /tmp/dist
       run: |
         IMAGE_TAG=${{ steps.image-tag.outputs.IMAGE_TAG }} make release
-        echo "generated images with tag ${steps.image-tag.outputs.IMAGE_TAG}"
+        echo "generated images with tag ${{steps.image-tag.outputs.IMAGE_TAG}}"
 
     - name: Upload artifact
       if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')

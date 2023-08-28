@@ -21,12 +21,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v4
       with:
-        go-version: '1.19'
+        go-version: '1.20'
 
     - name: Go caches
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           ~/go/pkg/mod
@@ -49,12 +49,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v4
       with:
-        go-version: '1.19'
+        go-version: '1.20'
 
     - name: Go caches
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           ~/go/pkg/mod
@@ -79,6 +79,7 @@ jobs:
         IMAGE_TAG=sha-${GITHUB_SHA:0:7}
         [[ ${GITHUB_REF_TYPE} == "tag" ]] && IMAGE_TAG=${GITHUB_REF_NAME}
         echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_OUTPUT
+        echo "IMAGE_TAG=${IMAGE_TAG}"
 
     - name: Publish container images
       env:
@@ -87,6 +88,7 @@ jobs:
         DIST_DIR: /tmp/dist
       run: |
         IMAGE_TAG=${{ steps.image-tag.outputs.IMAGE_TAG }} make release
+        echo "generated images with tag ${{steps.image-tag.outputs.IMAGE_TAG}}"
 
     - name: Upload artifact
       if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
@@ -104,7 +106,7 @@ jobs:
       contents: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 

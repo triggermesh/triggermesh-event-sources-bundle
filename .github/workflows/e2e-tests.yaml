@@ -106,6 +106,7 @@ jobs:
         kubectl -n triggermesh      get pods -l app.kubernetes.io/part-of=triggermesh
         kubectl -n triggermesh      get events
         kubectl -n triggermesh      wait deployments.app --timeout=5m --for=condition=Available -l app.kubernetes.io/part-of=triggermesh
+        kubectl -n triggermesh      get events
 
     - name: Install Ginkgo
       run: go install github.com/onsi/ginkgo/v2/ginkgo
